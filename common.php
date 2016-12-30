@@ -12,6 +12,20 @@ Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
 Zend_Loader::loadClass('Zend_Gdata_Calendar');
 */
 
+$allowUsers = array('hungang','elton.chung','kilikili.ch','max.sue');
+$superIps = array('61.64.191.30','192.168.2.146');
+
+$ip = $_SERVER['REMOTE_ADDR'];
+#echo $ip;
+
+if(!in_array($ip, $superIps)){
+	if(null !== ($userId = $_GET['user_id'])){
+		if(!in_array($userId, $allowUsers)){
+			die("your picasa id is not agree to access query!!");
+		}
+	}
+}
+
 require_once 'Zend/Loader.php';
 Zend_Loader::loadClass('Zend_Gdata_Photos');
 Zend_Loader::loadClass('Zend_Gdata_ClientLogin');
