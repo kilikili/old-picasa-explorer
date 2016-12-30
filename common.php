@@ -64,10 +64,11 @@ function getAlbumIdFromUri($uri){
 	return end($uriAry);
 }
 
-function getPhoto($photoEntry, $isPrint = true){
+function getPhoto($photoEntry, $allFlag = "N"){
 	$camera = "";
 	$contentUrl = "";
 	$firstThumbnailUrl = "";
+	$isPrint = false;
 
 	$albumId = $photoEntry->getGphotoAlbumId()->getText();
 	$photoId = $photoEntry->getGphotoId()->getText();
@@ -92,17 +93,25 @@ function getPhoto($photoEntry, $isPrint = true){
 	  $firstThumbnailUrl = $mediaThumbnailArray[0]->getUrl();
 	}
 
-	if(trim($desc) != ""){
-		//echo "AlbumID: " . $albumId . "<br />\n";
-		//echo "PhotoID: " . $photoId . "<br />\n";
-		//echo "Camera: " . $camera . "<br />\n";
-		//echo "Content URL: " . $contentUrl . "<br />\n";
-		//echo "First Thumbnail: " . $firstThumbnailUrl . "<br />\n";
-		if($isPrint === true){
-			echo "<br />\n";
-			echo "<img src=\"" . str_replace("s72","s800",$firstThumbnailUrl) . "\" title=\"" . $desc . "\" ><br />\n";
-			echo "Description: " . $desc . "<br />\n";
-			echo "<br />\n"; 
+	if($allFlag == 'Y'){
+		$isPrint = true;
+	}else{
+		if(trim($desc) != ""){
+			//echo "AlbumID: " . $albumId . "<br />\n";
+			//echo "PhotoID: " . $photoId . "<br />\n";
+			//echo "Camera: " . $camera . "<br />\n";
+			//echo "Content URL: " . $contentUrl . "<br />\n";
+			//echo "First Thumbnail: " . $firstThumbnailUrl . "<br />\n";
+			//if($isPrint === true){
+			//}
+			$isPrint = true;
 		}
+	}
+
+	if($isPrint === true){
+		echo "<br />\n";
+		echo "<img src=\"" . str_replace("s72","s800",$firstThumbnailUrl) . "\" title=\"" . $desc . "\" ><br />\n";
+		echo "Description: " . $desc . "<br />\n";
+		echo "<br />\n"; 
 	}
 }

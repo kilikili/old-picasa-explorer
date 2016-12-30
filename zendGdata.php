@@ -28,7 +28,10 @@ try {
 		$albumId = getAlbumIdFromUri($albumEntry->id->text);
 		$qStr['album_id'] = $albumId;
 		$qStr['user_id'] = $userId;
+		$qStr['all'] = 'N';
 		echo '<a href="' . getHtmlPageUrl($qStr) . '" target="_blank">' . $albumEntry->title->text . '</a><br />';
+		$qStr['all'] = 'Y';
+		echo '<a href="' . getHtmlPageUrl($qStr) . '" target="_blank">' . $albumEntry->title->text . '(ALL)</a><br />';
     }
 } catch (Zend_Gdata_App_HttpException $e) {
     echo "Error: " . $e->getMessage() . "<br />\n";
