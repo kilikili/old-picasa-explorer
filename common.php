@@ -19,14 +19,14 @@ Zend_Loader::loadClass('Zend_Gdata_AuthSub');
 
 
 function getCurrentUrl(){
-	return sprintf("http://%s/test/zendGdata.php",$_SERVER["HTTP_HOST"]);
+	return sprintf("http://%s/picasa/zendGdata.php",$_SERVER["HTTP_HOST"]);
 }
 
 function getHtmlPageUrl($qStr){
 	if(count($qStr) > 0){
 		$queryString = '?' . http_build_query($qStr);
 	}
-	return sprintf("http://%s/test/zendHtmlGdata.php",$_SERVER["HTTP_HOST"]) . $queryString;
+	return sprintf("http://%s/picasa/zendHtmlGdata.php",$_SERVER["HTTP_HOST"]) . $queryString;
 }
 
 function getAuthSubUrl()
